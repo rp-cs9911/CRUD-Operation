@@ -1,0 +1,25 @@
+<div class="container" >
+  <div class="container-fluid">
+    <form [formGroup]="form">
+    <div *ngIf="appState == 'default'">
+      <h3>Add User</h3>
+        <input [formControlName]="'email'" type="text" placeholder="email" />
+        <input [formControlName]="'password'" type="text" placeholder="password"/>
+        <button (click)="addTodo()">Add User</button>
+    </div>
+
+    <div *ngIf="appState == 'edit'">
+      <h3>Edit User</h3>
+        <input type="text" placeholder="email" [formControlName]="'email'" />
+        <input type="text" placeholder="password" [formControlName]="'password'" />
+        <button (click)="updateuser()">Update User</button>
+    </div>
+  </form>
+    <h3>User List</h3>
+    <ul *ngFor="let todo of todos">
+      <span class="todoItem"><strong>email:</strong> {{ ' '+todo.email+'   ' }}<strong>password:</strong>{{ ' '+todo.password }}</span>
+      <button *ngIf="appState !== 'edit'" class="deleteBtn" (click)="deleteUser(todo.email)">Delete</button>
+      <button style="margin-left: 10px;" class="editBtn" (click)="edituser(todo)">Edit</button>
+    </ul>
+  </div>
+</div>
